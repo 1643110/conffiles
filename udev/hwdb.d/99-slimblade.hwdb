@@ -1,0 +1,3 @@
+evdev:name:Kensington Kensington Slimblade Trackball:*
+  KEYBOARD_KEY_ff000001=btn_side
+  KEYBOARD_KEY_ff000002=btn_extra
