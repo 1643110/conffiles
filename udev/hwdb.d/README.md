@@ -25,7 +25,7 @@ evdev:name:Kensington Kensington Slimblade Trackball:*
 ## hwdb update.
 sudo udevadm hwdb --update && sudo udevadm trigger
 
-# Exprert Wireless Trackball Mouse
+# Expert Wireless Trackball Mouse
 ## Display device information.
 $ less /proc/bus/input/devices  
 I: Bus=0003 Vendor=047d Product=8018 Version=0111
