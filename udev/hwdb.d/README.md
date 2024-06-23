@@ -31,8 +31,7 @@ $ less /proc/bus/input/devices
 I: Bus=0003 Vendor=047d Product=8018 Version=0111  
 N: Name="Kensington Expert Wireless TB Mouse"  
 P: Phys=usb-0000:00:14.0-3.3/input0  
-S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-3/1-3.3/1-3.3:1.0/0003:047D:801  
-8.0005/input/input10  
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-3/1-3.3/1-3.3:1.0/0003:047D:8018.0005/input/input10  
 U: Uniq=  
 H: Handlers=mouse1 **event7**   
 B: PROP=0  
