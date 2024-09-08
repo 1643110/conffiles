@@ -1,3 +1,39 @@
+# Kensington Slimblade Pro Trackball
+## Display device information.
+$ less /proc/bus/input/devices  
+I: Bus=0003 Vendor=047d Product=80d6 Version=0110  
+N: Name="Kensington SlimBlade Pro(2.4GHz Receiver) Kensington SlimBlade Pro Trackball(2.4GHz Receiver)"  
+P: Phys=usb-0000:00:14.0-3.3/input0  
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-3/1-3.3/1-3.3:1.0/0003:047D:80D6.0008/input/input20  
+U: Uniq=  
+H: Handlers=mouse1 event7 
+B: PROP=0  
+B: EV=17  
+B: KEY=1f0000 0 0 0 0  
+B: REL=1943  
+B: MSC=10  
+
+## Get mapping number.
+$ sudo evtest /dev/input/event7  
+Testing ... (interrupt to exit)  
+Event: time 1725789048.268465, type 4 (EV_MSC), code 4 (MSC_SCAN), value **90003**  
+Event: time 1725789048.268465, type 1 (EV_KEY), code 274 (BTN_MIDDLE), value 1  
+Event: time 1725789048.268465, -------------- SYN_REPORT ------------  
+Event: time 1725789051.477482, type 4 (EV_MSC), code 4 (MSC_SCAN), value **90004**  
+Event: time 1725789051.477482, type 1 (EV_KEY), code 275 (BTN_SIDE), value 1  
+Event: time 1725789051.477482, -------------- SYN_REPORT ------------  
+
+
+## Create hwdb files.(Left_top:back / Right_top:forward)
+$ sudo vim /etc/udev/hwdb.d/97-slimblade_pro.hwdb  
+evdev:name:Kensington SlimBlade Pro*:*  
+  KEYBOARD_KEY_**90003**=btn_side  
+  KEYBOARD_KEY_**90004**=btn_extra  
+
+## hwdb update.
+sudo systemd-hwdb update && sudo udevadm trigger  
+
+
 # Kensington Slimblade Trackball
 ## Display device information.
 $ less /proc/bus/input/devices  
@@ -23,7 +59,7 @@ evdev:name:Kensington Kensington Slimblade Trackball:*
   KEYBOARD_KEY_**ff000002**=btn_extra  
 
 ## hwdb update.
-sudo udevadm hwdb --update && sudo udevadm trigger
+sudo systemd-hwdb update && sudo udevadm trigger  
 
 # Expert Wireless Trackball Mouse
 ## Display device information.
@@ -58,7 +94,7 @@ evdev:name:Kensington Expert Wireless TB Mouse:*
   KEYBOARD_KEY_**90004**=btn_extra  
 
 ## hwdb update.
-sudo udevadm hwdb --update && sudo udevadm trigger  
+sudo systemd-hwdb update && sudo udevadm trigger  
 
 **Reference input-event-codes.h for event codes. : /usr/include/linux/input-event-codes.h.**  
 **If imwheel is enabled, keybindings may conflict, so please disable imwheel.**
